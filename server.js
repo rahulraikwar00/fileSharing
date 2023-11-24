@@ -45,14 +45,12 @@ async function handleDownload(req, res) {
     }
 
     if (file.password != null) {
-      console.log("has semetinng ");
       if (req.body.password == null) {
         res.render("password");
         return;
       }
-      console.log("has semetinng out ");
+
       if (!(await bcrypt.compare(req.body.password, file.password))) {
-        console.log("has semetinng ");
         res.render("password", { error: true });
       }
     }
