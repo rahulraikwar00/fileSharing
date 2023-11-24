@@ -29,7 +29,7 @@ app.post("/upload", upload.single("file"), async function (req, res) {
     orignalName: req.file.originalname,
   };
   if (req.body.password != null && req.body.password != "") {
-    Filedata.password = await bcrypt.hash(req.body.password, 1); // 21 is just use a salt rounds to encrption it canb be anything and anytype
+    Filedata.password = await bcrypt.hash(req.body.password, 1); // 1 is count use for salt rounds to encrption it can be anything
   }
   const file = await File.create(Filedata);
   res.render("index", { filelink: `${req.headers.origin}/file/${file.id}` });
@@ -45,14 +45,16 @@ async function handleDownload(req, res) {
     }
 
     if (file.password != null) {
+      console.log("has semetinng ");
       if (req.body.password == null) {
         res.render("password");
         return;
       }
-    }
-
-    if (!(await bcrypt.compare(req.body.password, file.password))) {
-      res.render("password", { error: true });
+      console.log("has semetinng out ");
+      if (!(await bcrypt.compare(req.body.password, file.password))) {
+        console.log("has semetinng ");
+        res.render("password", { error: true });
+      }
     }
 
     file.download++;

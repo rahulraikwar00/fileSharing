@@ -22,4 +22,4 @@ const File = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("file2", File);
+module.exports = mongoose.model("files", File);
