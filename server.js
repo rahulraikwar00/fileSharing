@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path');
 const mongoose = require("mongoose");
 require("dotenv").config();
 const bcrypt = require("bcrypt");
@@ -8,8 +9,8 @@ const app = express();
 const multer = require("multer");
 const upload = multer({ dest: "upload" });
 
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
-
 const conneted = mongoose.connect(process.env.DATABASE_URL);
 if (conneted) {
   console.log("DATAbase is Connected");
@@ -65,4 +66,6 @@ async function handleDownload(req, res) {
   }
 }
 
-app.listen(3000);
+app.listen(3000, () => {
+  console.log("connected at port : ${3000}");
+});

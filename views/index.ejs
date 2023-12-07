@@ -4,11 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FilePage</title>
+    <link rel="stylesheet" href="stylesheet/style.css" />
   </head>
   <body>
     <% if (locals.filelink != null) { %>
     <div style="margin-bottom: 1rem">
       Your file is uploaded
+
       <a href="<%= locals.filelink %>"><%= locals.filelink %></a>
     </div>
     <% } %>
@@ -16,13 +18,7 @@
     <form
       action="/upload"
       method="post"
-      style="
-        display: grid;
-        gap: 0.5rem;
-        grid-template-columns: auto 1fr;
-        max-width: 500px;
-        margin: 0 auto;
-      "
+      class="m-auto max-w-md grid grid-cols-2 gap-4 p-6 bg-gray-100 rounded-md shadow-md"
       enctype="multipart/form-data"
     >
       <label for="file">File: </label>
