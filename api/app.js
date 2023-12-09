@@ -42,7 +42,7 @@ app.use("/", fileRouter); // Use the file router
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error("Error:", err);
-  res.status(500).send("Internal Server Error");
+  res.status(500).send("Internal Server Error !");
 });
 
 const PORT = process.env.PORT || 3000;
